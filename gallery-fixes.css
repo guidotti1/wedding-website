@@ -1,6 +1,6 @@
-/* Preserve the entire frame on images where the default gallery crop cut off Erika. */
+/* Keep the selected gallery images edge-to-edge without letterboxing. */
 .photo-gallery img.show-full-frame {
-  object-fit: contain;
+  object-fit: cover;
   object-position: center;
-  background-color: #e6e2d9;
+  background-color: transparent;
 }
