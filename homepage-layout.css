@@ -1,0 +1,29 @@
+/* Homepage layout refinements */
+.hero-photo {
+  height: clamp(480px, 55vw, 720px);
+}
+
+/* The invitation copy now occupies the full content row without a section label. */
+.intro {
+  grid-template-columns: minmax(0, 1fr);
+}
+
+.intro-content {
+  width: 100%;
+  max-width: none;
+}
+
+/* Keep the event cards, but remove their former date/heading row. */
+.weekend-preview {
+  padding-top: 40px;
+}
+
+.weekend-preview > .event-cards {
+  margin-top: 0;
+}
+
+@media (max-width: 760px) {
+  .hero-photo {
+    height: clamp(340px, 105vw, 520px);
+  }
+}
