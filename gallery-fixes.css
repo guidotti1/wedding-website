@@ -1,6 +1,6 @@
-/* Keep the selected gallery images edge-to-edge without letterboxing. */
+/* Show the complete frame on selected gallery photos, with any side space matching the page background. */
 .photo-gallery img.show-full-frame {
-  object-fit: cover;
+  object-fit: contain;
   object-position: center;
-  background-color: transparent;
+  background-color: var(--paper, #f7f5ef);
 }
