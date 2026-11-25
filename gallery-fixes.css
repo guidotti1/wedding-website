@@ -1,6 +1,45 @@
-/* Show the complete frame on selected gallery photos, with any side space matching the page background. */
+/* Gallery layout: consistent image boxes, aligned columns, and centered captions. */
+.photo-gallery {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  align-items: start;
+  row-gap: 42px;
+}
+
+.photo-gallery figure.gallery-wide {
+  margin-top: 0;
+}
+
+.photo-gallery figure img,
+.photo-gallery figure.gallery-tall img,
+.photo-gallery figure.gallery-wide img {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+}
+
+.photo-gallery figcaption {
+  justify-content: center;
+  gap: 12px;
+  text-align: center;
+}
+
 .photo-gallery img.show-full-frame {
   object-fit: contain;
   object-position: center;
   background-color: var(--paper, #f7f5ef);
+}
+
+@media (max-width: 760px) {
+  .photo-gallery {
+    column-gap: 13px;
+    row-gap: 25px;
+  }
+
+  .photo-gallery figure img,
+  .photo-gallery figure.gallery-tall img,
+  .photo-gallery figure.gallery-wide img {
+    height: auto;
+    aspect-ratio: 4 / 3;
+  }
 }
