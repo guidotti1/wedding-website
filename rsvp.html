@@ -1,0 +1,19 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f7f5ef"><meta name="description" content="RSVP for Thomas and Erika’s wedding weekend in Columbus, Ohio.">
+  <title>RSVP — Thomas &amp; Erika</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="site-header"><a class="wordmark" href="index.html" aria-label="Thomas and Erika, home">T<span>&amp;</span>E</a><button class="menu-toggle" aria-expanded="false" aria-controls="site-nav" aria-label="Open navigation"><i></i><i></i></button><nav id="site-nav" class="site-nav"><a href="index.html">Welcome</a><a href="schedule.html">The weekend</a><a href="gallery.html">Our photos</a><a href="accommodation.html">Travel</a><a class="nav-rsvp current" href="rsvp.html">RSVP <span>↗</span></a></nav></header>
+  <main>
+    <section class="page-masthead"><p class="eyebrow">We hope you can make it</p><h1>Save your<br><em>seat.</em></h1><p>We can’t wait to celebrate with you in Columbus.</p></section>
+    <section class="rsvp-section" id="rsvp"><div class="rsvp-side"><p class="eyebrow">A weekend together</p><h2>Kindly<br><em>reply.</em></h2><p>Kindly reply by <strong>[add RSVP deadline]</strong>.</p><div class="rsvp-doodle">T <span>♥</span> E</div></div><form class="rsvp-form" id="rsvp-form"><p class="form-kicker">A NOTE BACK TO US</p><label for="guest-name">Your name</label><input id="guest-name" name="name" type="text" placeholder="First and last name" required><label for="guest-email">Email address</label><input id="guest-email" name="email" type="email" placeholder="you@example.com" required><fieldset><legend>Will you be joining us?</legend><label class="choice"><input type="radio" name="attendance" value="joyfully accepts" required><span>Happily, yes!</span></label><label class="choice"><input type="radio" name="attendance" value="regretfully declines"><span>Sorry to miss it</span></label></fieldset><label for="guest-count">Number of guests in your party</label><select id="guest-count" name="guests"><option value="1">1 guest</option><option value="2">2 guests</option><option value="3">3 guests</option><option value="4">4 guests</option></select><label for="dietary">Dietary notes <span class="optional">(optional)</span></label><textarea id="dietary" name="dietary" rows="2" placeholder="Let us know about any dietary needs"></textarea><button class="button button-dark" type="submit">Prepare RSVP <span>↗</span></button><p class="form-note" id="form-message" role="status">RSVP submissions aren’t connected yet. Add a form service before sharing this page with guests.</p></form></section>
+  </main>
+  <footer class="site-footer"><a class="wordmark" href="index.html">T<span>&amp;</span>E</a><span>THOMAS GUIDOTTI &amp; ERIKA OKU</span><a href="index.html">BACK HOME ↑</a></footer><script src="script.js"></script>
+</body>
+</html>
