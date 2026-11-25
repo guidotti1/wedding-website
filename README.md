@@ -2,17 +2,10 @@
 
 A responsive, multi-page wedding site for the June 25–26, 2027 celebration in the Columbus, Ohio area.
 
-## Add your photos
-The site references local image files so your personal photos stay under your control. Add the provided photos to an `images/` folder in the repository using these exact filenames (or update the corresponding `src` values in the HTML):
+## Wedding photos
+The ten photo files are now in the repository root. `engagement.jpg` is the main image on the home page. The other nine images are included in the gallery, and `florence-photo1.jpg` also appears in the home-page feature section.
 
-- `couple-florence.jpg` — home page and gallery
-- `couple-iceland.jpg` — home-page feature and gallery
-- `couple-waterfall.jpg`
-- `couple-city.jpg`
-- `couple-evening.jpg`
-- `couple-outdoors.jpg`
-
-The chat attachments are not automatically copied into GitHub. Until these six files exist in the repository at those paths, Cloudflare Pages will return 404s for the photo URLs. Download the images from this conversation, rename them as listed, and commit/upload them under `images/` (case-sensitive).
+Image references currently use the root-level filenames (for example, `engagement.jpg`) so they match the files already committed and work with the Cloudflare Pages build. The current repository editing tools can update text files but cannot relocate the committed binary image files into a directory. To physically move them into `images/`, move the ten files in a local Git checkout, update the HTML image paths to `images/<filename>`, and commit that change.
 
 ## Before sharing with guests
 - Replace `[add RSVP deadline]` in `index.html` with the reply-by date.
