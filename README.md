@@ -3,16 +3,16 @@
 A responsive, multi-page wedding site for the June 25–26, 2027 celebration in the Columbus, Ohio area.
 
 ## Add your photos
-The site references local image files so your personal photos stay under your control. Add the provided photos to an `images/` folder using these filenames (or update the corresponding `src` values in the HTML):
+The site references local image files so your personal photos stay under your control. Add the provided photos to an `images/` folder in the repository using these exact filenames (or update the corresponding `src` values in the HTML):
 
-- `couple-florence.jpg` — Florence photo used on the home page and gallery
-- `couple-iceland.jpg` — Iceland photo used in the home-page feature and gallery
+- `couple-florence.jpg` — home page and gallery
+- `couple-iceland.jpg` — home-page feature and gallery
 - `couple-waterfall.jpg`
 - `couple-city.jpg`
 - `couple-evening.jpg`
 - `couple-outdoors.jpg`
 
-The chat attachments are not automatically copied into the GitHub repository, so the image files need to be added separately.
+The chat attachments are not automatically copied into GitHub. Until these six files exist in the repository at those paths, Cloudflare Pages will return 404s for the photo URLs. Download the images from this conversation, rename them as listed, and commit/upload them under `images/` (case-sensitive).
 
 ## Before sharing with guests
 - Replace `[add RSVP deadline]` in `index.html` with the reply-by date.
