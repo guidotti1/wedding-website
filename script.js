@@ -1,14 +1,18 @@
+const mastheadLayout = document.createElement('style');
+mastheadLayout.textContent = `
+  .page-masthead { padding-left: max(var(--gutter), 3vw); padding-right: max(var(--gutter), 3vw); }
+  .page-masthead > p:not(.eyebrow) { width: 100%; max-width: none; white-space: nowrap; }
+  .favorite-list > .eyebrow { display: none; }
+  .favorite-list > h2 { font-size: clamp(42px, 6vw, 72px); }
+  @media (max-width: 760px) {
+    .page-masthead > p:not(.eyebrow) { white-space: normal; }
+  }
+`;
+document.head.append(mastheadLayout);
+
 const menuButton = document.querySelector('.menu-toggle');
 const nav = document.querySelector('#site-nav');
 if (menuButton && nav) {
-  if (!nav.querySelector('a[href="favorite-places.html"]')) {
-    const favoritePlacesLink = document.createElement('a');
-    favoritePlacesLink.href = 'favorite-places.html';
-    favoritePlacesLink.textContent = 'Favorite places';
-    const rsvpLink = nav.querySelector('.nav-rsvp');
-    if (rsvpLink) nav.insertBefore(favoritePlacesLink, rsvpLink);
-    else nav.append(favoritePlacesLink);
-  }
   menuButton.addEventListener('click', () => {
     const expanded = menuButton.getAttribute('aria-expanded') === 'true';
     menuButton.setAttribute('aria-expanded', String(!expanded));
