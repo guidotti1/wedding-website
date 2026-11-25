@@ -1,21 +1,30 @@
-/* Gallery layout: consistent image boxes, aligned columns, and centered captions. */
+/* Editorial masonry gallery: natural photo proportions, aligned columns, centered captions. */
 .photo-gallery {
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  align-items: start;
-  row-gap: 42px;
+  display: block;
+  column-count: 3;
+  column-gap: 25px;
+  padding-top: 60px;
+  padding-bottom: 90px;
 }
 
+.photo-gallery figure,
 .photo-gallery figure.gallery-wide {
-  margin-top: 0;
+  display: inline-block;
+  width: 100%;
+  margin: 0 0 34px;
+  break-inside: avoid;
+  vertical-align: top;
 }
 
 .photo-gallery figure img,
 .photo-gallery figure.gallery-tall img,
 .photo-gallery figure.gallery-wide img {
+  display: block;
   width: 100%;
   height: auto;
-  aspect-ratio: 4 / 3;
-  object-fit: cover;
+  aspect-ratio: auto;
+  object-fit: contain;
+  background: transparent;
 }
 
 .photo-gallery figcaption {
@@ -24,22 +33,15 @@
   text-align: center;
 }
 
-.photo-gallery img.show-full-frame {
-  object-fit: contain;
-  object-position: center;
-  background-color: var(--paper, #f7f5ef);
+@media (max-width: 900px) {
+  .photo-gallery {
+    column-count: 2;
+    column-gap: 18px;
+  }
 }
 
-@media (max-width: 760px) {
+@media (max-width: 480px) {
   .photo-gallery {
-    column-gap: 13px;
-    row-gap: 25px;
-  }
-
-  .photo-gallery figure img,
-  .photo-gallery figure.gallery-tall img,
-  .photo-gallery figure.gallery-wide img {
-    height: auto;
-    aspect-ratio: 4 / 3;
+    column-count: 1;
   }
 }
