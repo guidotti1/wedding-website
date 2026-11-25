@@ -1,7 +1,18 @@
-/* Tighten homepage section spacing to roughly half the previous vertical gaps. */
-.intro {
-  padding-top: 50px;
-  padding-bottom: 52px;
+/* Homepage layout refinements */
+.hero-photo {
+  height: clamp(480px, 55vw, 720px);
+}
+
+.hero-invitation {
+  margin: 0 0 22px;
+  max-width: 580px;
+  font: 400 clamp(32px, 3.7vw, 58px)/1.05 var(--serif);
+  letter-spacing: -.035em;
+}
+
+.hero-invitation em {
+  color: var(--olive);
+  font-weight: 400;
 }
 
 .weekend-preview {
@@ -9,7 +20,21 @@
   padding-bottom: 55px;
 }
 
+.weekend-preview > .event-cards {
+  margin-top: 0;
+}
+
 .closing-note {
   padding-top: 46px;
   padding-bottom: 44px;
+}
+
+@media (max-width: 760px) {
+  .hero-photo {
+    height: clamp(340px, 105vw, 520px);
+  }
+
+  .hero-invitation {
+    font-size: clamp(29px, 9vw, 46px);
+  }
 }
