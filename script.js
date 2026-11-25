@@ -1,6 +1,14 @@
 const menuButton = document.querySelector('.menu-toggle');
 const nav = document.querySelector('#site-nav');
 if (menuButton && nav) {
+  if (!nav.querySelector('a[href="favorite-places.html"]')) {
+    const favoritePlacesLink = document.createElement('a');
+    favoritePlacesLink.href = 'favorite-places.html';
+    favoritePlacesLink.textContent = 'Favorite places';
+    const rsvpLink = nav.querySelector('.nav-rsvp');
+    if (rsvpLink) nav.insertBefore(favoritePlacesLink, rsvpLink);
+    else nav.append(favoritePlacesLink);
+  }
   menuButton.addEventListener('click', () => {
     const expanded = menuButton.getAttribute('aria-expanded') === 'true';
     menuButton.setAttribute('aria-expanded', String(!expanded));
