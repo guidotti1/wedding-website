@@ -1,19 +1,14 @@
-const wideMastheadPages = new Set(['schedule.html', 'gallery.html', 'accommodation.html']);
-const currentPage = window.location.pathname.split('/').pop();
-if (wideMastheadPages.has(currentPage)) {
-  const masthead = document.querySelector('.page-masthead');
-  const heading = masthead?.querySelector('h1');
-  if (masthead && heading) {
-    masthead.classList.add('wide-single-line-masthead');
-    heading.querySelectorAll('br').forEach((lineBreak) => lineBreak.remove());
-
-    const mastheadLayout = document.createElement('style');
-    mastheadLayout.textContent = `
-      .wide-single-line-masthead { min-height: 0 !important; padding-left: max(var(--gutter), 3vw) !important; padding-right: max(var(--gutter), 3vw) !important; }
-      .wide-single-line-masthead h1 { display: block !important; width: 100% !important; max-width: none !important; white-space: nowrap !important; font-size: clamp(18px, 6vw, 82px) !important; }
-    `;
-    document.head.append(mastheadLayout);
-  }
+const masthead = document.querySelector('.page-masthead:not(.favorite-masthead)');
+const mastheadHeading = masthead?.querySelector('h1');
+if (masthead && mastheadHeading) {
+  masthead.style.setProperty('min-height', '0', 'important');
+  masthead.style.setProperty('padding-top', 'clamp(48px, 6vw, 72px)', 'important');
+  masthead.style.setProperty('padding-bottom', '36px', 'important');
+  mastheadHeading.querySelectorAll('br').forEach((lineBreak) => lineBreak.remove());
+  mastheadHeading.style.setProperty('max-width', 'none', 'important');
+  mastheadHeading.style.setProperty('width', '100%', 'important');
+  mastheadHeading.style.setProperty('font-size', 'clamp(42px, 7vw, 96px)', 'important');
+  mastheadHeading.style.setProperty('white-space', 'nowrap', 'important');
 }
 
 const menuButton = document.querySelector('.menu-toggle');
