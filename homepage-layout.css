@@ -1,40 +1,35 @@
-/* Homepage layout refinements */
-.hero-photo {
-  height: clamp(480px, 55vw, 720px);
+/* Weekend event-card refinements */
+.event-card:first-child .card-number {
+  display: none;
 }
 
-.hero-invitation {
-  margin: 0 0 22px;
-  max-width: 580px;
-  font: 400 clamp(32px, 3.7vw, 58px)/1.05 var(--serif);
-  letter-spacing: -.035em;
+/* Scale the tile's typography and spacing together so the title keeps its
+   existing proportion to the date, description, and link. */
+.event-card {
+  zoom: 1.06;
+  min-width: 0;
 }
 
-.hero-invitation em {
-  color: var(--olive);
-  font-weight: 400;
+.event-card > * {
+  max-width: 100%;
 }
 
-.weekend-preview {
-  padding-top: 20px;
-  padding-bottom: 55px;
+.event-card .eyebrow,
+.event-card h3,
+.event-card p:not(.eyebrow),
+.event-card a {
+  overflow-wrap: anywhere;
 }
 
-.weekend-preview > .event-cards {
-  margin-top: 0;
-}
-
-.closing-note {
-  padding-top: 46px;
-  padding-bottom: 44px;
+.event-card p:not(.eyebrow) {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
 }
 
 @media (max-width: 760px) {
-  .hero-photo {
-    height: clamp(340px, 105vw, 520px);
-  }
-
-  .hero-invitation {
-    font-size: clamp(29px, 9vw, 46px);
+  .event-card {
+    zoom: 1.03;
   }
 }
