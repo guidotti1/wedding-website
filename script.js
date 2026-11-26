@@ -1,14 +1,51 @@
-const masthead = document.querySelector('.page-masthead:not(.favorite-masthead)');
-const mastheadHeading = masthead?.querySelector('h1');
-if (masthead && mastheadHeading) {
-  masthead.style.setProperty('min-height', '0', 'important');
-  masthead.style.setProperty('padding-top', 'clamp(48px, 6vw, 72px)', 'important');
-  masthead.style.setProperty('padding-bottom', '36px', 'important');
-  mastheadHeading.querySelectorAll('br').forEach((lineBreak) => lineBreak.remove());
-  mastheadHeading.style.setProperty('max-width', 'none', 'important');
-  mastheadHeading.style.setProperty('width', '100%', 'important');
-  mastheadHeading.style.setProperty('font-size', 'clamp(42px, 7vw, 96px)', 'important');
-  mastheadHeading.style.setProperty('white-space', 'nowrap', 'important');
+const pageName = window.location.pathname.split('/').pop();
+const consistentMastheadPages = new Set(['schedule.html', 'gallery.html', 'accommodation.html', 'favorite-places.html']);
+
+if (consistentMastheadPages.has(pageName)) {
+  const layoutStyle = document.createElement('style');
+  layoutStyle.textContent = `
+    .site-nav a { color: #000 !important; font-weight: 700 !important; }
+    .page-masthead h1 { color: #000 !important; font-weight: 700 !important; font-style: normal !important; }
+    .page-masthead h1 em { color: inherit !important; font-style: normal !important; font-weight: 700 !important; }
+    .page-masthead > p:not(.eyebrow) { color: #000 !important; font-weight: 700 !important; max-width: none !important; }
+    .page-masthead:not(.favorite-masthead) { min-height: 0 !important; padding-top: clamp(48px, 6vw, 72px) !important; padding-bottom: 36px !important; }
+    .page-masthead h1 { display: block !important; width: 100% !important; max-width: none !important; white-space: nowrap !important; margin-bottom: 18px !important; }
+    .page-masthead > p:not(.eyebrow) { white-space: nowrap !important; }
+    .masthead-index { display: none !important; }
+    .travel-section[aria-labelledby="airport-heading"] > .eyebrow { display: none !important; }
+  `;
+  document.head.append(layoutStyle);
+
+  const masthead = document.querySelector('.page-masthead');
+  const heading = masthead?.querySelector('h1');
+  if (heading) {
+    heading.querySelectorAll('br').forEach((lineBreak) => lineBreak.replaceWith(document.createTextNode(' ')));
+  }
+
+  const fitTextToLine = (element, minFontSize) => {
+    if (!element) return;
+    element.style.maxWidth = 'none';
+    element.style.whiteSpace = 'nowrap';
+    const startingSize = parseFloat(window.getComputedStyle(element).fontSize);
+    let size = startingSize;
+    while (element.scrollWidth > element.parentElement.clientWidth && size > minFontSize) {
+      size -= 0.5;
+      element.style.fontSize = `${size}px`;
+    }
+  };
+
+  const fitMasthead = () => {
+    fitTextToLine(heading, 14);
+    fitTextToLine(masthead?.querySelector(':scope > p:not(.eyebrow)'), 9);
+  };
+  fitMasthead();
+  window.addEventListener('resize', fitMasthead);
+
+  if (pageName === 'accommodation.html') {
+    const gettingHereLabel = [...document.querySelectorAll('.travel-section > .eyebrow')]
+      .find((label) => label.textContent.trim().toLowerCase() === 'getting here');
+    gettingHereLabel?.remove();
+  }
 }
 
 const menuButton = document.querySelector('.menu-toggle');
