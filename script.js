@@ -1,3 +1,34 @@
+const pageName = window.location.pathname.split('/').pop();
+const schedulePage = pageName === 'schedule' || pageName === 'schedule.html';
+
+// Keep the full Weekend subtitle on one line, including on the /schedule route.
+if (schedulePage) {
+  const subtitle = document.querySelector('.schedule-masthead > p:not(.eyebrow)');
+  if (subtitle) {
+    const fitSubtitle = () => {
+      subtitle.style.setProperty('display', 'block', 'important');
+      subtitle.style.setProperty('width', '100%', 'important');
+      subtitle.style.setProperty('max-width', 'none', 'important');
+      subtitle.style.setProperty('white-space', 'nowrap', 'important');
+      subtitle.style.setProperty('overflow', 'visible', 'important');
+      subtitle.style.setProperty('font-size', '24px', 'important');
+      subtitle.style.setProperty('line-height', '1.35', 'important');
+
+      const parentWidth = subtitle.parentElement.getBoundingClientRect().width;
+      const styles = window.getComputedStyle(subtitle.parentElement);
+      const availableWidth = parentWidth - parseFloat(styles.paddingLeft) - parseFloat(styles.paddingRight);
+      let fontSize = 24;
+      while (subtitle.scrollWidth > availableWidth && fontSize > 10) {
+        fontSize -= 0.5;
+        subtitle.style.setProperty('font-size', `${fontSize}px`, 'important');
+      }
+    };
+    fitSubtitle();
+    window.addEventListener('resize', fitSubtitle);
+    if (document.fonts?.ready) document.fonts.ready.then(fitSubtitle);
+  }
+}
+
 const masthead = document.querySelector('.page-masthead:not(.favorite-masthead)');
 const mastheadHeading = masthead?.querySelector('h1');
 if (masthead && mastheadHeading) {
@@ -9,28 +40,6 @@ if (masthead && mastheadHeading) {
   mastheadHeading.style.setProperty('width', '100%', 'important');
   mastheadHeading.style.setProperty('font-size', 'clamp(42px, 7vw, 96px)', 'important');
   mastheadHeading.style.setProperty('white-space', 'nowrap', 'important');
-}
-
-// Keep the Weekend page's full subtitle on one line at every viewport width.
-if (window.location.pathname.endsWith('/schedule.html') || window.location.pathname === '/schedule.html') {
-  const subtitle = document.querySelector('.page-masthead > p:not(.eyebrow)');
-  if (subtitle) {
-    const fitSubtitle = () => {
-      subtitle.style.setProperty('display', 'block', 'important');
-      subtitle.style.setProperty('width', '100%', 'important');
-      subtitle.style.setProperty('max-width', 'none', 'important');
-      subtitle.style.setProperty('white-space', 'nowrap', 'important');
-      subtitle.style.setProperty('font-size', 'clamp(10px, 2vw, 24px)', 'important');
-      let size = parseFloat(window.getComputedStyle(subtitle).fontSize);
-      while (subtitle.scrollWidth > subtitle.clientWidth && size > 10) {
-        size -= 0.5;
-        subtitle.style.setProperty('font-size', `${size}px`, 'important');
-      }
-    };
-    fitSubtitle();
-    window.addEventListener('resize', fitSubtitle);
-    if (document.fonts?.ready) document.fonts.ready.then(fitSubtitle);
-  }
 }
 
 const menuButton = document.querySelector('.menu-toggle');
