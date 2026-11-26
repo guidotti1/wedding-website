@@ -39,6 +39,19 @@
   display: none;
 }
 
+/* Keep the gallery masthead title together and add the missing space. */
+.gallery-masthead h1 {
+  white-space: normal;
+}
+
+.gallery-masthead h1 br {
+  display: none;
+}
+
+.gallery-masthead h1 br::after {
+  content: " ";
+}
+
 @media (max-width: 900px) {
   .photo-gallery {
     column-count: 2;
