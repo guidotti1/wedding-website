@@ -1,3 +1,25 @@
+const wideMastheadPages = new Set(['schedule.html', 'gallery.html', 'accommodation.html']);
+const currentPage = window.location.pathname.split('/').pop();
+if (wideMastheadPages.has(currentPage)) {
+  document.querySelector('.page-masthead')?.classList.add('wide-single-line-masthead');
+}
+
+const mastheadLayout = document.createElement('style');
+mastheadLayout.textContent = `
+  .wide-single-line-masthead { padding-left: max(var(--gutter), 3vw); padding-right: max(var(--gutter), 3vw); min-height: 0; }
+  .wide-single-line-masthead h1 { width: 100%; max-width: none; font-size: clamp(38px, 6vw, 82px); white-space: nowrap; }
+  .wide-single-line-masthead h1 br { display: none; }
+  .wide-single-line-masthead > p:not(.eyebrow) { width: 100%; max-width: none; white-space: nowrap; }
+  @media (max-width: 760px) {
+    .wide-single-line-masthead h1 { white-space: normal; }
+    .wide-single-line-masthead h1 br { display: initial; }
+    .wide-single-line-masthead > p:not(.eyebrow) { white-space: normal; }
+  }
+  .favorite-list > .eyebrow { display: none; }
+  .favorite-list > h2 { font-size: clamp(42px, 6vw, 72px); }
+`;
+document.head.append(mastheadLayout);
+
 const menuButton = document.querySelector('.menu-toggle');
 const nav = document.querySelector('#site-nav');
 if (nav && !nav.querySelector('a[href="favorite-places.html"]')) {
