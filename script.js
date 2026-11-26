@@ -1,22 +1,20 @@
 const wideMastheadPages = new Set(['schedule.html', 'gallery.html', 'accommodation.html']);
 const currentPage = window.location.pathname.split('/').pop();
 if (wideMastheadPages.has(currentPage)) {
-  document.querySelector('.page-masthead')?.classList.add('wide-single-line-masthead');
-}
+  const masthead = document.querySelector('.page-masthead');
+  const heading = masthead?.querySelector('h1');
+  if (masthead && heading) {
+    masthead.classList.add('wide-single-line-masthead');
+    heading.querySelectorAll('br').forEach((lineBreak) => lineBreak.remove());
 
-const mastheadLayout = document.createElement('style');
-mastheadLayout.textContent = `
-  .wide-single-line-masthead { padding-left: max(var(--gutter), 3vw); padding-right: max(var(--gutter), 3vw); min-height: 0; }
-  .wide-single-line-masthead h1 { width: 100%; max-width: none; font-size: clamp(22px, 6.5vw, 82px); white-space: nowrap; }
-  .wide-single-line-masthead h1 br { display: none; }
-  .wide-single-line-masthead > p:not(.eyebrow) { width: 100%; max-width: none; white-space: nowrap; }
-  @media (max-width: 760px) {
-    .wide-single-line-masthead > p:not(.eyebrow) { white-space: normal; }
+    const mastheadLayout = document.createElement('style');
+    mastheadLayout.textContent = `
+      .wide-single-line-masthead { min-height: 0 !important; padding-left: max(var(--gutter), 3vw) !important; padding-right: max(var(--gutter), 3vw) !important; }
+      .wide-single-line-masthead h1 { display: block !important; width: 100% !important; max-width: none !important; white-space: nowrap !important; font-size: clamp(18px, 6vw, 82px) !important; }
+    `;
+    document.head.append(mastheadLayout);
   }
-  .favorite-list > .eyebrow { display: none; }
-  .favorite-list > h2 { font-size: clamp(42px, 6vw, 72px); }
-`;
-document.head.append(mastheadLayout);
+}
 
 const menuButton = document.querySelector('.menu-toggle');
 const nav = document.querySelector('#site-nav');
