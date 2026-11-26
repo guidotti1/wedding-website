@@ -1,32 +1,43 @@
-const pageName = window.location.pathname.split('/').pop();
+const pageName = window.location.pathname.split('/').filter(Boolean).pop() || 'index.html';
 const schedulePage = pageName === 'schedule' || pageName === 'schedule.html';
 
-// Keep the full Weekend subtitle on one line, including on the /schedule route.
 if (schedulePage) {
-  const subtitle = document.querySelector('.schedule-masthead > p:not(.eyebrow)');
-  if (subtitle) {
-    const fitSubtitle = () => {
-      subtitle.style.setProperty('display', 'block', 'important');
-      subtitle.style.setProperty('width', '100%', 'important');
-      subtitle.style.setProperty('max-width', 'none', 'important');
-      subtitle.style.setProperty('white-space', 'nowrap', 'important');
-      subtitle.style.setProperty('overflow', 'visible', 'important');
-      subtitle.style.setProperty('font-size', '24px', 'important');
-      subtitle.style.setProperty('line-height', '1.35', 'important');
-
-      const parentWidth = subtitle.parentElement.getBoundingClientRect().width;
-      const styles = window.getComputedStyle(subtitle.parentElement);
-      const availableWidth = parentWidth - parseFloat(styles.paddingLeft) - parseFloat(styles.paddingRight);
-      let fontSize = 24;
-      while (subtitle.scrollWidth > availableWidth && fontSize > 10) {
-        fontSize -= 0.5;
-        subtitle.style.setProperty('font-size', `${fontSize}px`, 'important');
-      }
-    };
-    fitSubtitle();
-    window.addEventListener('resize', fitSubtitle);
-    if (document.fonts?.ready) document.fonts.ready.then(fitSubtitle);
-  }
+  const scheduleStyle = document.createElement('style');
+  scheduleStyle.textContent = `
+    .schedule-masthead {
+      width: 100% !important;
+      max-width: none !important;
+      min-height: 0 !important;
+      padding: clamp(48px, 6vw, 72px) clamp(24px, 7vw, 112px) 42px !important;
+    }
+    .schedule-masthead h1 {
+      width: 100% !important;
+      max-width: none !important;
+      white-space: nowrap !important;
+      font-size: clamp(48px, 8vw, 108px) !important;
+    }
+    .schedule-masthead h1 em {
+      color: var(--olive) !important;
+      font-style: italic !important;
+    }
+    .timeline.section-shell,
+    .schedule-note.section-shell {
+      width: 100% !important;
+      max-width: none !important;
+      padding-left: clamp(24px, 7vw, 112px) !important;
+      padding-right: clamp(24px, 7vw, 112px) !important;
+    }
+    .timeline .day-heading h2 { font-size: clamp(32px, 4vw, 48px) !important; }
+    .timeline .day-heading > span { font-size: clamp(13px, 1.3vw, 17px) !important; }
+    .timeline .timeline-item { font-size: clamp(18px, 1.6vw, 22px) !important; }
+    .timeline .timeline-item time { font-size: 1.05em !important; }
+    .timeline .timeline-item h3 { font-size: clamp(25px, 2.4vw, 32px) !important; }
+    .timeline .timeline-item p,
+    .timeline .timeline-item .under-link { font-size: 1.08em !important; }
+    .schedule-note p,
+    .schedule-note .under-link { font-size: clamp(17px, 1.6vw, 21px) !important; }
+  `;
+  document.head.append(scheduleStyle);
 }
 
 const masthead = document.querySelector('.page-masthead:not(.favorite-masthead)');
