@@ -7,12 +7,19 @@ if (consistentMastheadPages.has(pageName)) {
     .site-nav a { color: #000 !important; font-weight: 700 !important; }
     .page-masthead h1 { color: #000 !important; font-weight: 700 !important; font-style: normal !important; }
     .page-masthead h1 em { color: inherit !important; font-style: normal !important; font-weight: 700 !important; }
+    .schedule-masthead h1 em { color: var(--olive) !important; font-style: italic !important; }
     .page-masthead > p:not(.eyebrow) { color: #000 !important; font-weight: 700 !important; max-width: none !important; }
     .page-masthead:not(.favorite-masthead) { min-height: 0 !important; padding-top: clamp(48px, 6vw, 72px) !important; padding-bottom: 36px !important; }
     .page-masthead h1 { display: block !important; width: 100% !important; max-width: none !important; white-space: nowrap !important; margin-bottom: 18px !important; }
     .page-masthead > p:not(.eyebrow) { white-space: nowrap !important; }
     .masthead-index { display: none !important; }
     .travel-section[aria-labelledby="airport-heading"] > .eyebrow { display: none !important; }
+    .schedule-masthead > p:not(.eyebrow) { font-size: clamp(17px, 2vw, 24px) !important; }
+    .timeline .timeline-item { font-size: 1.15rem; }
+    .timeline .timeline-item time { font-size: 1.1em; }
+    .timeline .timeline-item h3 { font-size: 1.3em; }
+    .timeline .timeline-item p, .timeline .timeline-item .under-link { font-size: 1.08em; }
+    .timeline .day-heading h2 { font-size: clamp(28px, 3.5vw, 40px); }
   `;
   document.head.append(layoutStyle);
 
