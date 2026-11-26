@@ -10,6 +10,10 @@ if (schedulePage) {
       min-height: 0 !important;
       padding: clamp(48px, 6vw, 72px) clamp(24px, 7vw, 112px) 42px !important;
     }
+    .schedule-masthead > .eyebrow {
+      font-size: clamp(20px, 2.4vw, 30px) !important;
+      line-height: 1.3 !important;
+    }
     .schedule-masthead h1 {
       width: 100% !important;
       max-width: none !important;
@@ -34,10 +38,40 @@ if (schedulePage) {
     .timeline .timeline-item h3 { font-size: clamp(25px, 2.4vw, 32px) !important; }
     .timeline .timeline-item p,
     .timeline .timeline-item .under-link { font-size: 1.08em !important; }
+    .timeline .timeline-item p.schedule-single-line {
+      white-space: nowrap !important;
+      max-width: none !important;
+      line-height: 1.35 !important;
+    }
     .schedule-note p,
     .schedule-note .under-link { font-size: clamp(17px, 1.6vw, 21px) !important; }
   `;
   document.head.append(scheduleStyle);
+
+  const singleLineDescriptions = [
+    'Arrive at Darby House in Galloway, Ohio, and find your seat before the ceremony.',
+    'The moment we’ve been waiting for. Ceremony and reception are both at Darby House.',
+    'Join us for dinner and an evening of celebration at Darby House.',
+    'The night comes to a close. Thank you for making it unforgettable.'
+  ];
+  const descriptionElements = [...document.querySelectorAll('.schedule-masthead ~ .timeline .timeline-item p')]
+    .filter((paragraph) => singleLineDescriptions.includes(paragraph.textContent.trim()));
+
+  const fitDescriptions = () => {
+    descriptionElements.forEach((paragraph) => {
+      paragraph.classList.add('schedule-single-line');
+      paragraph.style.setProperty('font-size', '22px', 'important');
+      const availableWidth = paragraph.parentElement.getBoundingClientRect().width;
+      let size = 22;
+      while (paragraph.scrollWidth > availableWidth && size > 11) {
+        size -= 0.5;
+        paragraph.style.setProperty('font-size', `${size}px`, 'important');
+      }
+    });
+  };
+  fitDescriptions();
+  window.addEventListener('resize', fitDescriptions);
+  if (document.fonts?.ready) document.fonts.ready.then(fitDescriptions);
 }
 
 const masthead = document.querySelector('.page-masthead:not(.favorite-masthead)');
