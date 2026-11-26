@@ -98,6 +98,19 @@ if (masthead && mastheadHeading) {
   mastheadHeading.style.setProperty('white-space', 'nowrap', 'important');
 }
 
+if (document.querySelector('.favorite-masthead h1')) {
+  const favoriteHeadingStyle = document.createElement('style');
+  favoriteHeadingStyle.textContent = `
+    .favorite-masthead { padding-bottom: clamp(48px, 7vw, 72px) !important; }
+    .favorite-masthead h1 {
+      line-height: 1.2 !important;
+      padding-bottom: 0.16em !important;
+      overflow: visible !important;
+    }
+  `;
+  document.head.append(favoriteHeadingStyle);
+}
+
 const menuButton = document.querySelector('.menu-toggle');
 const nav = document.querySelector('#site-nav');
 if (nav && !nav.querySelector('a[href="favorite-places.html"]')) {
