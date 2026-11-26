@@ -24,6 +24,7 @@ if (schedulePage) {
       color: var(--olive) !important;
       font-style: italic !important;
     }
+    .schedule-masthead > p:not(.eyebrow) { display: none !important; }
     .timeline.section-shell,
     .schedule-note.section-shell {
       width: 100% !important;
@@ -37,26 +38,40 @@ if (schedulePage) {
     .timeline .timeline-item time { font-size: 1.05em !important; }
     .timeline .timeline-item h3 { font-size: clamp(25px, 2.4vw, 32px) !important; }
     .timeline .timeline-item p {
-      font-size: 1.08em !important;
+      font-size: 22px !important;
       white-space: nowrap !important;
       max-width: none !important;
       line-height: 1.35 !important;
     }
-    .timeline .timeline-item .under-link { font-size: 0.88em !important; }
-    .schedule-note p,
-    .schedule-note .under-link { font-size: clamp(17px, 1.6vw, 21px) !important; }
+    .timeline .timeline-item .under-link {
+      font-size: clamp(13px, 1.1vw, 16px) !important;
+      line-height: 1.3 !important;
+    }
+    .schedule-note {
+      min-height: 220px !important;
+      padding-top: 72px !important;
+      padding-bottom: 72px !important;
+      align-items: center !important;
+      column-gap: clamp(28px, 5vw, 72px) !important;
+    }
+    .schedule-note p {
+      max-width: none !important;
+      flex: 1 1 auto !important;
+      font-size: clamp(17px, 1.6vw, 21px) !important;
+      line-height: 1.7 !important;
+    }
+    .schedule-note .under-link {
+      font-size: clamp(16px, 1.5vw, 20px) !important;
+      white-space: nowrap !important;
+    }
   `;
   document.head.append(scheduleStyle);
 
-  // Keep all event descriptions at one shared size, shrinking them together only
-  // when needed so the long welcome-party description also stays on one line.
   const descriptions = [...document.querySelectorAll('.schedule-masthead ~ .timeline .timeline-item p')];
   const fitDescriptions = () => {
     if (!descriptions.length) return;
     let size = 22;
-    descriptions.forEach((paragraph) => {
-      paragraph.style.setProperty('font-size', `${size}px`, 'important');
-    });
+    descriptions.forEach((paragraph) => paragraph.style.setProperty('font-size', `${size}px`, 'important'));
     while (size > 12 && descriptions.some((paragraph) => {
       paragraph.style.setProperty('font-size', `${size}px`, 'important');
       return paragraph.scrollWidth > paragraph.parentElement.getBoundingClientRect().width;
