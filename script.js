@@ -14,8 +14,8 @@ if (consistentMastheadPages.has(pageName)) {
     .page-masthead > p:not(.eyebrow) { white-space: nowrap !important; }
     .masthead-index { display: none !important; }
     .travel-section[aria-labelledby="airport-heading"] > .eyebrow { display: none !important; }
-    .schedule-masthead > p:not(.eyebrow) { font-size: clamp(17px, 2vw, 24px) !important; }
-    .timeline .timeline-item { font-size: 1.15rem; }
+    .schedule-masthead > p:not(.eyebrow) { font-size: clamp(20px, 2.4vw, 30px) !important; }
+    .timeline .timeline-item { font-size: 1.25rem; }
     .timeline .timeline-item time { font-size: 1.1em; }
     .timeline .timeline-item h3 { font-size: 1.3em; }
     .timeline .timeline-item p, .timeline .timeline-item .under-link { font-size: 1.08em; }
@@ -43,7 +43,7 @@ if (consistentMastheadPages.has(pageName)) {
 
   const fitMasthead = () => {
     fitTextToLine(heading, 14);
-    fitTextToLine(masthead?.querySelector(':scope > p:not(.eyebrow)'), 9);
+    fitTextToLine(masthead?.querySelector(':scope > p:not(.eyebrow)'), 14);
   };
   fitMasthead();
   window.addEventListener('resize', fitMasthead);
