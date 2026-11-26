@@ -7,12 +7,10 @@ if (wideMastheadPages.has(currentPage)) {
 const mastheadLayout = document.createElement('style');
 mastheadLayout.textContent = `
   .wide-single-line-masthead { padding-left: max(var(--gutter), 3vw); padding-right: max(var(--gutter), 3vw); min-height: 0; }
-  .wide-single-line-masthead h1 { width: 100%; max-width: none; font-size: clamp(38px, 6vw, 82px); white-space: nowrap; }
+  .wide-single-line-masthead h1 { width: 100%; max-width: none; font-size: clamp(22px, 6.5vw, 82px); white-space: nowrap; }
   .wide-single-line-masthead h1 br { display: none; }
   .wide-single-line-masthead > p:not(.eyebrow) { width: 100%; max-width: none; white-space: nowrap; }
   @media (max-width: 760px) {
-    .wide-single-line-masthead h1 { white-space: normal; }
-    .wide-single-line-masthead h1 br { display: initial; }
     .wide-single-line-masthead > p:not(.eyebrow) { white-space: normal; }
   }
   .favorite-list > .eyebrow { display: none; }
