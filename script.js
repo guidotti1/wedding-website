@@ -101,10 +101,24 @@ if (masthead && mastheadHeading) {
 if (document.querySelector('.favorite-masthead h1')) {
   const favoriteHeadingStyle = document.createElement('style');
   favoriteHeadingStyle.textContent = `
-    .favorite-masthead { padding-bottom: clamp(48px, 7vw, 72px) !important; }
+    .favorite-masthead {
+      height: auto !important;
+      min-height: 0 !important;
+      padding-bottom: 80px !important;
+      overflow: visible !important;
+    }
     .favorite-masthead h1 {
-      line-height: 1.2 !important;
-      padding-bottom: 0.16em !important;
+      display: block !important;
+      height: auto !important;
+      line-height: 1.4 !important;
+      padding: 0 0 0.28em !important;
+      margin-bottom: 18px !important;
+      overflow: visible !important;
+    }
+    .favorite-masthead h1 em {
+      display: inline !important;
+      line-height: inherit !important;
+      padding-bottom: 0.12em !important;
       overflow: visible !important;
     }
   `;
