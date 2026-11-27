@@ -42,6 +42,8 @@ if (schedulePage) {
     .schedule-masthead > .eyebrow {
       font-size: clamp(18px, 2vw, 24px) !important;
       line-height: 1.3 !important;
+      text-transform: none !important;
+      letter-spacing: normal !important;
     }
     .schedule-masthead h1 {
       width: 100% !important;
