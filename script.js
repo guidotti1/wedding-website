@@ -104,22 +104,22 @@ if (document.querySelector('.favorite-masthead h1')) {
     .favorite-masthead {
       height: auto !important;
       min-height: 0 !important;
-      padding-top: clamp(58px, 7vw, 82px) !important;
-      padding-bottom: 92px !important;
+      padding-top: clamp(40px, 4vw, 56px) !important;
+      padding-bottom: 36px !important;
       overflow: visible !important;
     }
     .favorite-masthead h1 {
       display: block !important;
       height: auto !important;
-      line-height: 1.5 !important;
-      padding: 0.08em 0 0.32em !important;
-      margin-bottom: 18px !important;
+      line-height: 1.25 !important;
+      padding: 0.08em 0 0.2em !important;
+      margin-bottom: 12px !important;
       overflow: visible !important;
     }
     .favorite-masthead h1 em {
       display: inline !important;
       line-height: inherit !important;
-      padding: 0.12em 0.14em 0.12em !important;
+      padding: 0.08em 0.12em 0.08em !important;
       overflow: visible !important;
     }
   `;
@@ -128,7 +128,7 @@ if (document.querySelector('.favorite-masthead h1')) {
   const favoriteHeading = document.querySelector('.favorite-masthead h1');
   const fitFavoriteHeading = () => {
     if (!favoriteHeading) return;
-    favoriteHeading.style.setProperty('font-size', 'clamp(42px, 7vw, 96px)', 'important');
+    favoriteHeading.style.setProperty('font-size', 'clamp(40px, 6vw, 82px)', 'important');
     const availableWidth = favoriteHeading.clientWidth;
     let size = parseFloat(getComputedStyle(favoriteHeading).fontSize);
     while (size > 24 && favoriteHeading.scrollWidth > availableWidth) {
