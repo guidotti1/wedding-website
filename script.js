@@ -1,34 +1,25 @@
 const pageName = window.location.pathname.split('/').filter(Boolean).pop() || 'index.html';
 const schedulePage = pageName === 'schedule' || pageName === 'schedule.html';
 
-// Keep the secondary-page mastheads visually consistent across layouts.
-const mastheadAlignmentStyle = document.createElement('style');
-mastheadAlignmentStyle.textContent = `
-  .page-masthead.schedule-masthead,
-  .page-masthead.gallery-masthead,
-  .page-masthead.travel-masthead,
-  .page-masthead.favorite-masthead {
-    box-sizing: border-box !important;
-    width: 100% !important;
-    max-width: none !important;
-    min-height: 0 !important;
-    padding-top: clamp(48px, 6vw, 72px) !important;
-    padding-right: clamp(22px, 6vw, 112px) !important;
-    padding-bottom: 36px !important;
-    padding-left: clamp(22px, 6vw, 112px) !important;
-    background-color: #ecebe3 !important;
+// Keep secondary-page masthead subtitles consistent.
+const mastheadSubtitleStyle = document.createElement('style');
+mastheadSubtitleStyle.textContent = `
+  .schedule-masthead > p:not(.eyebrow),
+  .gallery-masthead > p:not(.eyebrow),
+  .travel-masthead > p:not(.eyebrow),
+  .favorite-masthead > p:not(.eyebrow) {
+    font-size: clamp(16px, 1.5vw, 20px) !important;
+    line-height: 1.5 !important;
+    text-transform: none !important;
   }
-  .page-masthead.schedule-masthead h1,
-  .page-masthead.gallery-masthead h1,
-  .page-masthead.travel-masthead h1,
-  .page-masthead.favorite-masthead h1 {
-    line-height: 1.2 !important;
-    padding-top: 0.08em !important;
-    padding-bottom: 0.2em !important;
-    overflow: visible !important;
+  .schedule-masthead > .eyebrow,
+  .gallery-masthead > .eyebrow,
+  .travel-masthead > .eyebrow,
+  .favorite-masthead > .eyebrow {
+    display: none !important;
   }
 `;
-document.head.append(mastheadAlignmentStyle);
+document.head.append(mastheadSubtitleStyle);
 
 if (schedulePage) {
   const scheduleStyle = document.createElement('style');
@@ -39,23 +30,21 @@ if (schedulePage) {
       min-height: 0 !important;
       padding: clamp(48px, 6vw, 72px) clamp(24px, 7vw, 112px) 42px !important;
     }
-    .schedule-masthead > .eyebrow {
-      font-size: clamp(18px, 2vw, 24px) !important;
-      line-height: 1.3 !important;
-      text-transform: none !important;
-      letter-spacing: normal !important;
-    }
     .schedule-masthead h1 {
       width: 100% !important;
       max-width: none !important;
       white-space: nowrap !important;
       font-size: clamp(48px, 8vw, 108px) !important;
+      margin-bottom: 10px !important;
     }
     .schedule-masthead h1 em {
       color: var(--olive) !important;
       font-style: italic !important;
     }
-    .schedule-masthead > p:not(.eyebrow) { display: none !important; }
+    .schedule-masthead > p:not(.eyebrow) {
+      display: block !important;
+      margin-top: 0 !important;
+    }
     .timeline.section-shell,
     .schedule-note.section-shell {
       width: 100% !important;
