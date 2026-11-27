@@ -118,7 +118,7 @@ if (document.querySelector('.favorite-masthead h1')) {
     .favorite-masthead h1 em {
       display: inline !important;
       line-height: inherit !important;
-      padding-bottom: 0.12em !important;
+      padding: 0.12em 0.14em 0.12em !important;
       overflow: visible !important;
     }
   `;
