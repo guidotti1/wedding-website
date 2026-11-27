@@ -1,6 +1,35 @@
 const pageName = window.location.pathname.split('/').filter(Boolean).pop() || 'index.html';
 const schedulePage = pageName === 'schedule' || pageName === 'schedule.html';
 
+// Keep the secondary-page mastheads visually consistent across layouts.
+const mastheadAlignmentStyle = document.createElement('style');
+mastheadAlignmentStyle.textContent = `
+  .page-masthead.schedule-masthead,
+  .page-masthead.gallery-masthead,
+  .page-masthead.travel-masthead,
+  .page-masthead.favorite-masthead {
+    box-sizing: border-box !important;
+    width: 100% !important;
+    max-width: none !important;
+    min-height: 0 !important;
+    padding-top: clamp(48px, 6vw, 72px) !important;
+    padding-right: clamp(22px, 6vw, 112px) !important;
+    padding-bottom: 36px !important;
+    padding-left: clamp(22px, 6vw, 112px) !important;
+    background-color: #ecebe3 !important;
+  }
+  .page-masthead.schedule-masthead h1,
+  .page-masthead.gallery-masthead h1,
+  .page-masthead.travel-masthead h1,
+  .page-masthead.favorite-masthead h1 {
+    line-height: 1.2 !important;
+    padding-top: 0.08em !important;
+    padding-bottom: 0.2em !important;
+    overflow: visible !important;
+  }
+`;
+document.head.append(mastheadAlignmentStyle);
+
 if (schedulePage) {
   const scheduleStyle = document.createElement('style');
   scheduleStyle.textContent = `
