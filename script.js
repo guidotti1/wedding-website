@@ -12,7 +12,6 @@ mastheadSubtitleStyle.textContent = `
     line-height: 1.5 !important;
     text-transform: none !important;
   }
-  .schedule-masthead > .eyebrow,
   .gallery-masthead > .eyebrow,
   .travel-masthead > .eyebrow,
   .favorite-masthead > .eyebrow {
@@ -29,6 +28,14 @@ if (schedulePage) {
       max-width: none !important;
       min-height: 0 !important;
       padding: clamp(48px, 6vw, 72px) clamp(24px, 7vw, 112px) 42px !important;
+    }
+    .schedule-masthead > .eyebrow {
+      display: block !important;
+      margin: 0 !important;
+      font-size: clamp(16px, 1.5vw, 20px) !important;
+      line-height: 1.5 !important;
+      text-transform: none !important;
+      letter-spacing: normal !important;
     }
     .schedule-masthead h1 {
       width: 100% !important;
