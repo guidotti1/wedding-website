@@ -123,6 +123,21 @@ if (document.querySelector('.favorite-masthead h1')) {
     }
   `;
   document.head.append(favoriteHeadingStyle);
+
+  const favoriteHeading = document.querySelector('.favorite-masthead h1');
+  const fitFavoriteHeading = () => {
+    if (!favoriteHeading) return;
+    favoriteHeading.style.setProperty('font-size', 'clamp(42px, 7vw, 96px)', 'important');
+    const availableWidth = favoriteHeading.clientWidth;
+    let size = parseFloat(getComputedStyle(favoriteHeading).fontSize);
+    while (size > 24 && favoriteHeading.scrollWidth > availableWidth) {
+      size -= 1;
+      favoriteHeading.style.setProperty('font-size', `${size}px`, 'important');
+    }
+  };
+  fitFavoriteHeading();
+  window.addEventListener('resize', fitFavoriteHeading);
+  if (document.fonts?.ready) document.fonts.ready.then(fitFavoriteHeading);
 }
 
 const menuButton = document.querySelector('.menu-toggle');
