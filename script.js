@@ -168,6 +168,56 @@ if (document.querySelector('.favorite-masthead h1')) {
   if (document.fonts?.ready) document.fonts.ready.then(fitFavoriteHeading);
 }
 
+// Apply one final, shared masthead treatment to schedule, gallery, travel, and favorites.
+const consistentMastheads = [...document.querySelectorAll(
+  '.schedule-masthead, .gallery-masthead, .travel-masthead, .favorite-masthead'
+)];
+const alignMastheads = () => {
+  consistentMastheads.forEach((section) => {
+    const heading = section.querySelector('h1');
+    if (!heading) return;
+
+    section.style.setProperty('box-sizing', 'border-box', 'important');
+    section.style.setProperty('width', '100%', 'important');
+    section.style.setProperty('max-width', 'none', 'important');
+    section.style.setProperty('min-height', '0', 'important');
+    section.style.setProperty('height', 'auto', 'important');
+    section.style.setProperty('padding-top', 'clamp(48px, 6vw, 72px)', 'important');
+    section.style.setProperty('padding-right', 'clamp(24px, 7vw, 112px)', 'important');
+    section.style.setProperty('padding-bottom', '36px', 'important');
+    section.style.setProperty('padding-left', 'clamp(24px, 7vw, 112px)', 'important');
+    section.style.setProperty('background-color', '#ecebe3', 'important');
+    section.style.setProperty('overflow', 'visible', 'important');
+
+    heading.style.setProperty('box-sizing', 'border-box', 'important');
+    heading.style.setProperty('width', '100%', 'important');
+    heading.style.setProperty('max-width', 'none', 'important');
+    heading.style.setProperty('font-size', 'clamp(42px, 7vw, 96px)', 'important');
+    heading.style.setProperty('line-height', '1.2', 'important');
+    heading.style.setProperty('white-space', 'nowrap', 'important');
+    heading.style.setProperty('padding', '0.08em 0 0.2em', 'important');
+    heading.style.setProperty('margin-bottom', '10px', 'important');
+    heading.style.setProperty('overflow', 'visible', 'important');
+
+    const subtitle = heading.nextElementSibling;
+    if (subtitle?.tagName === 'P') {
+      subtitle.style.setProperty('display', 'block', 'important');
+      subtitle.style.setProperty('font-size', 'clamp(16px, 1.5vw, 20px)', 'important');
+      subtitle.style.setProperty('line-height', '1.5', 'important');
+      subtitle.style.setProperty('font-weight', '400', 'important');
+      subtitle.style.setProperty('text-transform', 'none', 'important');
+      subtitle.style.setProperty('letter-spacing', 'normal', 'important');
+      subtitle.style.setProperty('max-width', 'none', 'important');
+      subtitle.style.setProperty('margin-top', '0', 'important');
+      subtitle.style.setProperty('margin-bottom', '0', 'important');
+      subtitle.style.setProperty('white-space', 'normal', 'important');
+    }
+  });
+};
+alignMastheads();
+window.addEventListener('resize', alignMastheads);
+if (document.fonts?.ready) document.fonts.ready.then(alignMastheads);
+
 const menuButton = document.querySelector('.menu-toggle');
 const nav = document.querySelector('#site-nav');
 if (nav && !nav.querySelector('a[href="favorite-places.html"]')) {
