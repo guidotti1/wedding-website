@@ -104,14 +104,15 @@ if (document.querySelector('.favorite-masthead h1')) {
     .favorite-masthead {
       height: auto !important;
       min-height: 0 !important;
-      padding-bottom: 80px !important;
+      padding-top: clamp(58px, 7vw, 82px) !important;
+      padding-bottom: 92px !important;
       overflow: visible !important;
     }
     .favorite-masthead h1 {
       display: block !important;
       height: auto !important;
-      line-height: 1.4 !important;
-      padding: 0 0 0.28em !important;
+      line-height: 1.5 !important;
+      padding: 0.08em 0 0.32em !important;
       margin-bottom: 18px !important;
       overflow: visible !important;
     }
